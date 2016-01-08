@@ -32,6 +32,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"path"
 	"path/filepath"
 	"strings"
 
@@ -48,6 +49,8 @@ func scrape(url, css, attr string) (string, error) {
 	if sel.Length() == 0 {
 		return "", fmt.Errorf("no selection for '%s'", css)
 	}
+
+	sel = sel.First()
 
 	var res string
 	if len(attr) == 0 {
@@ -89,12 +92,20 @@ func export(path string, r io.Reader) error {
 	return nil
 }
 
+func usage() {
+	fmt.Fprintf(os.Stderr, "Usage: %s [options] conf src\n", path.Base(os.Args[0]))
+	fmt.Fprintf(os.Stderr, "http://foosoft.net/projects/scrawl/\n\n")
+	fmt.Fprintf(os.Stderr, "Parameters:\n")
+	flag.PrintDefaults()
+}
+
 func main() {
 	var (
 		attr    = flag.String("attr", "", "attribute to query")
 		verbose = flag.Bool("verbose", false, "verbose output")
 	)
 
+	flag.Usage = usage
 	flag.Parse()
 
 	if flag.NArg() < 2 {
