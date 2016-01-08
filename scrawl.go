@@ -24,7 +24,9 @@ package main
 
 import (
 	"bytes"
+	"errors"
 	"flag"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -43,15 +45,26 @@ func scrape(url, css, attr string) (string, error) {
 	}
 
 	sel := doc.Find(css)
+	if sel.Length() == 0 {
+		return "", fmt.Errorf("no selection for '%s'", css)
+	}
 
 	var res string
 	if len(attr) == 0 {
 		res = sel.Text()
 	} else {
-		res, _ = sel.Attr(attr)
+		var exists bool
+		if res, exists = sel.Attr(attr); !exists {
+			return "", fmt.Errorf("attribute '%s' not found", attr)
+		}
 	}
 
-	return strings.TrimSpace(res), nil
+	res = strings.TrimSpace(res)
+	if len(res) == 0 {
+		return "", errors.New("extracted empty string")
+	}
+
+	return res, nil
 }
 
 func download(url string, w io.Writer) error {
@@ -77,28 +90,40 @@ func export(path string, r io.Reader) error {
 }
 
 func main() {
+	var (
+		attr    = flag.String("attr", "", "attribute to query")
+		verbose = flag.Bool("verbose", false, "verbose output")
+	)
+
+	flag.Parse()
+
 	if flag.NArg() < 2 {
 		flag.Usage()
 		os.Exit(2)
 	}
 
 	var (
-		attr    = flag.String("attr", "", "attrerty to query")
-		rawBase = flag.Arg(1)
-		css     = flag.Arg(2)
+		baseRaw = flag.Arg(0)
+		css     = flag.Arg(1)
 	)
 
-	base, err := url.Parse(rawBase)
+	base, err := url.Parse(baseRaw)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	resRaw, err := scrape(rawBase, css, *attr)
+	if *verbose {
+		log.Printf("scraping page '%s'", baseRaw)
+	}
+
+	resRaw, err := scrape(baseRaw, css, *attr)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	log.Print(resRaw)
+	if *verbose {
+		log.Printf("extracted string '%s'", resRaw)
+	}
 
 	res, err := url.Parse(resRaw)
 	if err != nil {
@@ -109,6 +134,10 @@ func main() {
 		res = res.ResolveReference(base)
 	}
 
+	if *verbose {
+		log.Printf("downloading file '%s'", res.String())
+	}
+
 	var buff bytes.Buffer
 	if err := download(res.String(), &buff); err != nil {
 		log.Fatal(err)
@@ -116,9 +145,13 @@ func main() {
 
 	var path string
 	if flag.NArg() > 2 {
-		path = flag.Arg(3)
+		path = flag.Arg(2)
 	} else {
 		path = filepath.Base(res.Path)
+	}
+
+	if *verbose {
+		log.Printf("writing file '%s'", path)
 	}
 
 	if err := export(path, &buff); err != nil {
