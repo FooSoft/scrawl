@@ -24,7 +24,6 @@ package main
 
 import (
 	"bytes"
-	"errors"
 	"flag"
 	"fmt"
 	"io"
@@ -35,39 +34,31 @@ import (
 	"path"
 	"path/filepath"
 	"strings"
+	"sync"
 
 	"github.com/PuerkitoBio/goquery"
 )
 
-func scrape(url, css, attr string) (string, error) {
+func scrape(url, css, attr string) ([]string, error) {
 	doc, err := goquery.NewDocument(url)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
-	sel := doc.Find(css)
-	if sel.Length() == 0 {
-		return "", fmt.Errorf("no selection for '%s'", css)
-	}
-
-	sel = sel.First()
-
-	var res string
-	if len(attr) == 0 {
-		res = sel.Text()
-	} else {
-		var exists bool
-		if res, exists = sel.Attr(attr); !exists {
-			return "", fmt.Errorf("attribute '%s' not found", attr)
+	var assets []string
+	doc.Find(css).Each(func(index int, sel *goquery.Selection) {
+		asset := sel.Text()
+		if len(attr) > 0 {
+			asset, _ = sel.Attr(attr)
 		}
-	}
 
-	res = strings.TrimSpace(res)
-	if len(res) == 0 {
-		return "", errors.New("extracted empty string")
-	}
+		asset = strings.TrimSpace(asset)
+		if len(asset) > 0 {
+			assets = append(assets, asset)
+		}
+	})
 
-	return res, nil
+	return assets, nil
 }
 
 func download(url string, w io.Writer) error {
@@ -102,13 +93,14 @@ func usage() {
 func main() {
 	var (
 		attr    = flag.String("attr", "", "attribute to query")
+		dir     = flag.String("dir", ".", "output directory")
 		verbose = flag.Bool("verbose", false, "verbose output")
 	)
 
 	flag.Usage = usage
 	flag.Parse()
 
-	if flag.NArg() < 2 {
+	if flag.NArg() != 2 {
 		flag.Usage()
 		os.Exit(2)
 	}
@@ -127,45 +119,50 @@ func main() {
 		log.Printf("scraping page '%s'", baseRaw)
 	}
 
-	resRaw, err := scrape(baseRaw, css, *attr)
+	assetsRaw, err := scrape(baseRaw, css, *attr)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if *verbose {
-		log.Printf("extracted string '%s'", resRaw)
+	var wg sync.WaitGroup
+	for _, assetRaw := range assetsRaw {
+		wg.Add(1)
+		go func(assetRaw string) {
+			defer wg.Done()
+
+			if *verbose {
+				log.Printf("parsing asset string '%s'", assetRaw)
+			}
+
+			asset, err := url.Parse(assetRaw)
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			if !asset.IsAbs() {
+				asset = asset.ResolveReference(base)
+			}
+
+			if *verbose {
+				log.Printf("downloading file '%s'", asset.String())
+			}
+
+			var buff bytes.Buffer
+			if err := download(asset.String(), &buff); err != nil {
+				log.Fatal(err)
+			}
+
+			path := filepath.Join(*dir, filepath.Base(asset.Path))
+
+			if *verbose {
+				log.Printf("writing file '%s'", path)
+			}
+
+			if err := export(path, &buff); err != nil {
+				log.Fatal(err)
+			}
+		}(assetRaw)
 	}
 
-	res, err := url.Parse(resRaw)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	if !res.IsAbs() {
-		res = res.ResolveReference(base)
-	}
-
-	if *verbose {
-		log.Printf("downloading file '%s'", res.String())
-	}
-
-	var buff bytes.Buffer
-	if err := download(res.String(), &buff); err != nil {
-		log.Fatal(err)
-	}
-
-	var path string
-	if flag.NArg() > 2 {
-		path = flag.Arg(2)
-	} else {
-		path = filepath.Base(res.Path)
-	}
-
-	if *verbose {
-		log.Printf("writing file '%s'", path)
-	}
-
-	if err := export(path, &buff); err != nil {
-		log.Fatal(err)
-	}
+	wg.Wait()
 }
