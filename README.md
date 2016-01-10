@@ -14,6 +14,16 @@ If you already have the Go environment and toolchain set up, you can get the lat
 $ go get github.com/FooSoft/scrawl
 ```
 
+Otherwise, you can use the pre-built binaries for the platforms below:
+
+*   [scrawl_darwin_386.tar.gz](//foosoft.net/projects/scrawl/dl/scrawl_darwin_386.tar.gz)
+*   [scrawl_darwin_amd64.tar.gz](//foosoft.net/projects/scrawl/dl/scrawl_darwin_amd64.tar.gz)
+*   [scrawl_linux_386.tar.gz](//foosoft.net/projects/scrawl/dl/scrawl_linux_386.tar.gz)
+*   [scrawl_linux_amd64.tar.gz](//foosoft.net/projects/scrawl/dl/scrawl_linux_amd64.tar.gz)
+*   [scrawl_linux_arm.tar.gz](//foosoft.net/projects/scrawl/dl/scrawl_linux_arm.tar.gz)
+*   [scrawl_windows_386.tar.gz](//foosoft.net/projects/scrawl/dl/scrawl_windows_386.tar.gz)
+*   [scrawl_windows_amd64.tar.gz](//foosoft.net/projects/scrawl/dl/scrawl_windows_amd64.tar.gz)
+
 ## Example ##
 
 Let's say we want to create a script to download the latest Debian package of [Anki](http://ankisrs.net/):
