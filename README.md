@@ -24,6 +24,23 @@ Otherwise, you can use the pre-built binaries for the platforms below:
 *   [scrawl_windows_386.tar.gz](//foosoft.net/projects/scrawl/dl/scrawl_windows_386.tar.gz)
 *   [scrawl_windows_amd64.tar.gz](//foosoft.net/projects/scrawl/dl/scrawl_windows_amd64.tar.gz)
 
+## Usage ##
+
+Executing Scrawl with the `-help` command line argument will trigger online help to be displayed. The list below
+provides a more detailed description of what the parameters do.
+
+*   **attr**
+
+    The attribute containing the desired download path is specified by this argument.
+
+*   **dir**
+
+    This argument specifies the output directory for downloaded files.
+
+*   **vebose**
+
+    Scrawl will output more details about what it is currently doing when this flag is set.
+
 ## Example ##
 
 Let's say we want to create a script to download the latest Debian package of [Anki](http://ankisrs.net/):
