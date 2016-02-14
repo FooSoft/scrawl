@@ -85,7 +85,7 @@ func export(path string, r io.Reader) error {
 
 func usage() {
 	fmt.Fprintf(os.Stderr, "Usage: %s [options] url selector [path]\n", path.Base(os.Args[0]))
-	fmt.Fprintf(os.Stderr, "http://foosoft.net/projects/scrawl/\n\n")
+	fmt.Fprintf(os.Stderr, "https://foosoft.net/projects/scrawl/\n\n")
 	fmt.Fprintf(os.Stderr, "Parameters:\n")
 	flag.PrintDefaults()
 }
