@@ -16,13 +16,13 @@ $ go get github.com/FooSoft/scrawl
 
 Otherwise, you can use the pre-built binaries for the platforms below:
 
-*   [scrawl_darwin_386.tar.gz](//foosoft.net/projects/scrawl/dl/scrawl_darwin_386.tar.gz)
-*   [scrawl_darwin_amd64.tar.gz](//foosoft.net/projects/scrawl/dl/scrawl_darwin_amd64.tar.gz)
-*   [scrawl_linux_386.tar.gz](//foosoft.net/projects/scrawl/dl/scrawl_linux_386.tar.gz)
-*   [scrawl_linux_amd64.tar.gz](//foosoft.net/projects/scrawl/dl/scrawl_linux_amd64.tar.gz)
-*   [scrawl_linux_arm.tar.gz](//foosoft.net/projects/scrawl/dl/scrawl_linux_arm.tar.gz)
-*   [scrawl_windows_386.tar.gz](//foosoft.net/projects/scrawl/dl/scrawl_windows_386.tar.gz)
-*   [scrawl_windows_amd64.tar.gz](//foosoft.net/projects/scrawl/dl/scrawl_windows_amd64.tar.gz)
+*   [scrawl_darwin_386.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_darwin_386.tar.gz)
+*   [scrawl_darwin_amd64.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_darwin_amd64.tar.gz)
+*   [scrawl_linux_386.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_linux_386.tar.gz)
+*   [scrawl_linux_amd64.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_linux_amd64.tar.gz)
+*   [scrawl_linux_arm.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_linux_arm.tar.gz)
+*   [scrawl_windows_386.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_windows_386.tar.gz)
+*   [scrawl_windows_amd64.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_windows_amd64.tar.gz)
 
 ## Usage ##
 
@@ -47,7 +47,7 @@ Let's say we want to create a script to download the latest Debian package of [A
 
 1.  We load up the homepage and are presented with a big download button as shown in the screenshot below:
 
-    [![Anki Homepage](img/anki-thumb.png)](img/anki.png)
+    [![Anki Homepage](https://foosoft.net/projects/scrawl/img/anki-thumb.png)](https://foosoft.net/projects/scrawl/img/anki.png)
 
 2.  Let's copy that link so we can download the latest version with wGet or curl from our script at any time!
 
@@ -57,7 +57,7 @@ Let's say we want to create a script to download the latest Debian package of [A
 
 3.  Let's inspect the download link in your favorite browser to see what additional information we can get:
 
-    [![Inspector](img/inspect-thumb.png)](img/inspect.png)
+    [![Inspector](https://foosoft.net/projects/scrawl/img/inspect-thumb.png)](https://foosoft.net/projects/scrawl/img/inspect.png)
 
 4.  It appears that we can easily create a selector for this element: `#linux > a:nth-child(2)`.
 
