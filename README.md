@@ -1,4 +1,3 @@
-# Scrawl #
 
 Scrawl is a simple command line tool for downloading files referenced on websites using [CSS
 selectors](http://www.w3schools.com/cssref/css_selectors.asp). This application is not meant to be a replacement for
