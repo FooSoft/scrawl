@@ -66,7 +66,7 @@ Let's say we want to create a script to download the latest Debian package of [A
 
 5.  Now let's create a simple download and install script:
 
-    ```
+    ```bash
     #!/bin/sh
     rm -rf /tmp/anki
     mkdir /tmp/anki
