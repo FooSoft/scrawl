@@ -16,13 +16,13 @@ $ go get github.com/FooSoft/scrawl
 
 Otherwise, you can use the pre-built binaries for the platforms below:
 
-*   [scrawl_darwin_386.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_darwin_386.tar.gz)
-*   [scrawl_darwin_amd64.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_darwin_amd64.tar.gz)
-*   [scrawl_linux_386.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_linux_386.tar.gz)
-*   [scrawl_linux_amd64.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_linux_amd64.tar.gz)
-*   [scrawl_linux_arm.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_linux_arm.tar.gz)
-*   [scrawl_windows_386.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_windows_386.tar.gz)
-*   [scrawl_windows_amd64.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_windows_amd64.tar.gz)
+*   [scrawl\_darwin\_386.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_darwin_386.tar.gz)
+*   [scrawl\_darwin\_amd64.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_darwin_amd64.tar.gz)
+*   [scrawl\_linux\_386.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_linux_386.tar.gz)
+*   [scrawl\_linux\_amd64.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_linux_amd64.tar.gz)
+*   [scrawl\_linux\_arm.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_linux_arm.tar.gz)
+*   [scrawl\_windows\_386.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_windows_386.tar.gz)
+*   [scrawl\_windows\_amd64.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_windows_amd64.tar.gz)
 
 ## Usage ##
 
