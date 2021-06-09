@@ -1,4 +1,4 @@
-# Scrawl #
+# Scrawl
 
 Scrawl is a simple command line tool for downloading files referenced on websites using [CSS
 selectors](http://www.w3schools.com/cssref/css_selectors.asp). This application is not meant to be a replacement for
@@ -6,7 +6,7 @@ selectors](http://www.w3schools.com/cssref/css_selectors.asp). This application 
 files when the context in which they are presented is known to. This capability is particularly useful when the path of
 the desired file is not known but the URL of the website that links to it is (common for download pages).
 
-## Installation ##
+## Installation
 
 If you already have the Go environment and toolchain set up, you can get the latest version by running:
 
@@ -24,7 +24,7 @@ Otherwise, you can use the pre-built binaries for the platforms below:
 *   [scrawl\_windows\_386.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_windows_386.tar.gz)
 *   [scrawl\_windows\_amd64.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_windows_amd64.tar.gz)
 
-## Usage ##
+## Usage
 
 Executing Scrawl with the `-help` command line argument will trigger online help to be displayed. Below is a more
 detailed description of what the parameters do.
@@ -33,7 +33,7 @@ detailed description of what the parameters do.
 *   **dir**: This argument specifies the output directory for downloaded files.
 *   **vebose**: Scrawl will output more details about what it is currently doing when this flag is set.
 
-## Example ##
+## Example
 
 Let's say we want to create a script to download the latest Debian package of [Anki](http://ankisrs.net/):
 
