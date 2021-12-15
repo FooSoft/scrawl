@@ -1,3 +1,12 @@
+<!-- +++
+Area = "projects"
+GitHub = "scrawl"
+Layout = "page"
+Tags = ["css", "downloader", "golang", "mit license", "scrawl", "web"]
+Description = "Command line CSS selector-based web scraper and downloader."
+Collection = "ProjectsComplete"
++++ -->
+
 # Scrawl
 
 Scrawl is a simple command line tool for downloading files referenced on websites using [CSS
@@ -14,15 +23,7 @@ If you already have the Go environment and toolchain set up, you can get the lat
 $ go get github.com/FooSoft/scrawl
 ```
 
-Otherwise, you can use the pre-built binaries for the platforms below:
-
-*   [scrawl\_darwin\_386.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_darwin_386.tar.gz)
-*   [scrawl\_darwin\_amd64.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_darwin_amd64.tar.gz)
-*   [scrawl\_linux\_386.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_linux_386.tar.gz)
-*   [scrawl\_linux\_amd64.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_linux_amd64.tar.gz)
-*   [scrawl\_linux\_arm.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_linux_arm.tar.gz)
-*   [scrawl\_windows\_386.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_windows_386.tar.gz)
-*   [scrawl\_windows\_amd64.tar.gz](https://foosoft.net/projects/scrawl/dl/scrawl_windows_amd64.tar.gz)
+Otherwise, you can use the [pre-built binaries](https://github.com/FooSoft/scrawl/releases) from the project page.
 
 ## Usage
 
@@ -39,7 +40,7 @@ Let's say we want to create a script to download the latest Debian package of [A
 
 1.  We load up the homepage and are presented with a big download button as shown in the screenshot below:
 
-    [![Anki Homepage](https://foosoft.net/projects/scrawl/img/anki-thumb.png)](https://foosoft.net/projects/scrawl/img/anki.png)
+    [![Anki Homepage](img/anki-thumb.png)](img/anki.png)
 
 2.  Let's copy that link so we can download the latest version with wGet or curl from our script at any time!
 
@@ -49,7 +50,7 @@ Let's say we want to create a script to download the latest Debian package of [A
 
 3.  Let's inspect the download link in your favorite browser to see what additional information we can get:
 
-    [![Inspector](https://foosoft.net/projects/scrawl/img/inspect-thumb.png)](https://foosoft.net/projects/scrawl/img/inspect.png)
+    [![Inspector](img/inspect-thumb.png)](img/inspect.png)
 
 4.  It appears that we can easily create a selector for this element: `#linux > a:nth-child(2)`.
 
