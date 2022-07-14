@@ -1,12 +1,3 @@
-<!-- +++
-Area = "projects"
-GitHub = "scrawl"
-Layout = "page"
-Tags = ["css", "downloader", "golang", "mit license", "scrawl", "web"]
-Description = "Command line CSS selector-based web scraper and downloader."
-Collection = "ProjectsComplete"
-+++ -->
-
 # Scrawl
 
 Scrawl is a simple command line tool for downloading files referenced on websites using [CSS
