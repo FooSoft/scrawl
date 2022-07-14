@@ -11,7 +11,7 @@ the desired file is not known but the URL of the website that links to it is (co
 If you already have the Go environment and toolchain set up, you can get the latest version by running:
 
 ```
-$ go get github.com/FooSoft/scrawl
+$ go install foosoft.net/projects/scrawl@latest
 ```
 
 Otherwise, you can use the [pre-built binaries](https://github.com/FooSoft/scrawl/releases) from the project page.
